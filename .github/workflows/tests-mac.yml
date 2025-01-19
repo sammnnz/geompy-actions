@@ -1,0 +1,16 @@
+name: Tests-mac
+
+on:
+   workflow_dispatch:
+     inputs:
+       ref:
+         required: true
+         type: string
+         default: 'develop'
+
+jobs:
+  tests-call-develop:
+     if: ${{inputs.ref == 'develop'}}
+     uses: sammnnz/geompy/.github/workflows/tests-mac.yml@develop
+     with:
+        ref: ${{inputs.ref}}
