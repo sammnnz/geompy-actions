@@ -35,18 +35,6 @@ on:
       arg-value-4:
         required: false
         type: string
-      arg-name-5:
-        required: false
-        type: string
-      arg-value-5:
-        required: false
-        type: string
-      arg-name-6:
-        required: false
-        type: string
-      arg-value-6:
-        required: false
-        type: string
 
 jobs:
   pre:
