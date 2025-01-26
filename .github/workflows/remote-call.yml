@@ -16,5 +16,5 @@ jobs:
           gh api --method POST \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          repos/sammnnz/geompy/actions/workflows/tests-mac.yml/dispatches -f "ref=_te-2_call_dispatch" -f "inputs[ref]=_te-2_call_dispatch" -f "inputs[os]=windows-latest" -f "inputs[py]=3.9"
+          repos/sammnnz/geompy/actions/workflows/tests-os-py.yml/dispatches -f "ref=develop" -f "inputs[os]=ubuntu-latest" -f "inputs[py]=3.8"
         
