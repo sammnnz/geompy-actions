@@ -43,12 +43,13 @@ jobs:
       - id: parse-arg
         run: |
           ARGS=""
-          for (( i=1; i <= 6; i++ )); do
-            if [ ${{inputs.arg-name-$i}} == '' ]; then
+          for (( i=1; i <= 4; i++ )); do
+            if [ "${{inputs.arg-name}}" + "-$i" == "" ]; then
               continue
             fi
             # echo "${{inputs.arg-name-$i}}"
-            ARGS+=" -f inputs[${{inputs.arg-name-$i}}]=${{inputs.arg-value-$i}}"
+            ARGS+=" -f inputs[${{inputs.arg-name}}]" + "-$i"
+            ARGS+="${{inputs.arg-value}}" + "-$i"
           done
           echo "$ARGS" >> $GITHUB_OUTPUT
         shell: bash
