@@ -11,28 +11,28 @@ on:
         required: true
         type: string
         default: 'tests-os-py.yml'
-      arg-name-1:
+      arg-1:
         required: false
         type: string
-      arg-value-1:
+      arg-2:
         required: false
         type: string
-      arg-name-2:
+      arg-3:
         required: false
         type: string
-      arg-value-2:
+      arg-4:
         required: false
         type: string
-      arg-name-3:
+      arg-5:
         required: false
         type: string
-      arg-value-3:
+      arg-6:
         required: false
         type: string
-      arg-name-4:
+      arg-7:
         required: false
         type: string
-      arg-value-4:
+      arg-8:
         required: false
         type: string
 
@@ -43,9 +43,17 @@ jobs:
       - id: parse-arg
         run: |
           ARGS=""
-          for (( i=1; i <= 4; i++ )); do
-            if [ "${{inputs.arg-name-${i}}}" == "" ]; then
+          for arg in ${{inputs.arg-1}} \
+          ${{inputs.arg-2}}\
+          ${{inputs.arg-3}}\
+          ${{inputs.arg-4}}\
+          ${{inputs.arg-5}}\
+          ${{inputs.arg-6}}\
+          ${{inputs.arg-7}}\
+          ${{inputs.arg-8}}; do
+            if [ $arg == "" ]; then
               continue
+            elif [  ]
             fi
             # echo "${{inputs.arg-name-${i}}}"
             ARGS+=" -f inputs[${{inputs.arg-name-${i}}}]={{inputs.arg-value-${i}}}"
