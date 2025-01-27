@@ -43,20 +43,22 @@ jobs:
       - id: parse-arg
         run: |
           ARGS=""
-          for arg in ${{inputs.arg-1}} \
-          ${{inputs.arg-2}}\
-          ${{inputs.arg-3}}\
-          ${{inputs.arg-4}}\
-          ${{inputs.arg-5}}\
-          ${{inputs.arg-6}}\
-          ${{inputs.arg-7}}\
+          for arg in \
+          ${{inputs.arg-1}} \
+          ${{inputs.arg-2}} \
+          ${{inputs.arg-3}} \
+          ${{inputs.arg-4}} \
+          ${{inputs.arg-5}} \
+          ${{inputs.arg-6}} \
+          ${{inputs.arg-7}} \
           ${{inputs.arg-8}}; do
-            if [ $arg == "" ]; then
+            if [ ! $arg =~ ";" ]; then
               continue
-            elif [  ]
             fi
-            # echo "${{inputs.arg-name-${i}}}"
-            ARGS+=" -f inputs[${{inputs.arg-name-${i}}}]={{inputs.arg-value-${i}}}"
+            name=`expr "$arg" : '[[:space:]]*\(.*\?\)[[:space:]]*;'`
+            value=`expr "$arg" : '.*;[[:space:]]*\(.*\?\)[[:space:]]*;.*'`
+            ARGS+="-f inputs[${name}]=${value}"
+            echo "$ARGS"
           done
           echo "$ARGS" >> $GITHUB_OUTPUT
         shell: bash
