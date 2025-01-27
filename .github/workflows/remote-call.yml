@@ -52,7 +52,7 @@ jobs:
           "${{inputs.arg-6}}" \
           "${{inputs.arg-7}}" \
           "${{inputs.arg-8}}"; do
-            if [ ! $arg =~ ";" ]; then
+            if [[ ! $arg =~ ";" ]]; then
               continue
             fi
             name=`expr "$arg" : '[[:space:]]*\(.*\?\)[[:space:]]*;'`
