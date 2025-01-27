@@ -55,20 +55,21 @@ jobs:
             if [[ ! $arg =~ ";" ]]; then
               continue
             fi
-            name=`expr "$arg" : '[[:space:]]*\(.*\?\)[[:space:]]*;'`
+            name=`expr "$arg" : '[[:space:]]*\([^;]*\?\)[[:space:]]*;'`
             if [[ $name == "" ]]; then
               echo "name is empty string"
               continue
             fi
-            value=`expr "$arg" : '.*;[[:space:]]*\(.*\?\)[[:space:]]*;.*'`
-            ARGS+="-f inputs[${name}]=${value}"
-            echo "$ARGS"
+            value=`expr "$arg" : '.*;[[:space:]]*\([^;]*\?\)[[:space:]]*;.*'`
+            ARGS+=" -f inputs[${name}]=\""${value}"\""
+            # echo "$ARGS"
           done
-          echo "$ARGS" >> $GITHUB_OUTPUT
+          echo "$ARGS"
+          # echo "$ARGS" >> $GITHUB_OUTPUT
         shell: bash
 
-    outputs:
-      lint: ${{ steps.parse-arg.outputs.value }}
+    # outputs:
+    #   lint: ${{ steps.parse-arg.outputs.value }}
 
   # call:
   #   runs-on: ubuntu-latest
