@@ -60,7 +60,7 @@ jobs:
               echo "name is empty string"
               continue
             fi
-            # value=`expr "$arg" : '.*;[[:space:]]*\(.*\?\)[[:space:]]*;.*'`
+            value=`expr "$arg" : '.*;[[:space:]]*\(.*\?\)[[:space:]]*;.*'`
             # ARGS+=" -f inputs[${name}]=\""${value}"\""
             
             # echo "$ARGS"
