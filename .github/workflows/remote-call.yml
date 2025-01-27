@@ -55,13 +55,14 @@ jobs:
             if [[ ! $arg =~ ";" ]]; then
               continue
             fi
-            name=`expr "$arg" : '[[:space:]]*\([^;]*\?\)[[:space:]]*;'`
-            if [[ $name == "" ]]; then
-              echo "name is empty string"
-              continue
-            fi
-            value=`expr "$arg" : '.*;[[:space:]]*\(.*\?\)[[:space:]]*;.*'`
-            ARGS+=" -f inputs[${name}]=\""${value}"\""
+            # name=`expr "$arg" : '[[:space:]]*\([^;]*\?\)[[:space:]]*;'`
+            # if [[ $name == "" ]]; then
+            #   echo "name is empty string"
+            #   continue
+            # fi
+            # value=`expr "$arg" : '.*;[[:space:]]*\(.*\?\)[[:space:]]*;.*'`
+            # ARGS+=" -f inputs[${name}]=\""${value}"\""
+            
             # echo "$ARGS"
           done
           echo "$ARGS"
