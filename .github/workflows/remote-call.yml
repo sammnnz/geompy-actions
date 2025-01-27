@@ -44,14 +44,14 @@ jobs:
         run: |
           ARGS=""
           for arg in \
-          ${{inputs.arg-1}} \
-          ${{inputs.arg-2}} \
-          ${{inputs.arg-3}} \
-          ${{inputs.arg-4}} \
-          ${{inputs.arg-5}} \
-          ${{inputs.arg-6}} \
-          ${{inputs.arg-7}} \
-          ${{inputs.arg-8}}; do
+          "${{inputs.arg-1}}" \
+          "${{inputs.arg-2}}" \
+          "${{inputs.arg-3}}" \
+          "${{inputs.arg-4}}" \
+          "${{inputs.arg-5}}" \
+          "${{inputs.arg-6}}" \
+          "${{inputs.arg-7}}" \
+          "${{inputs.arg-8}}"; do
             if [ ! $arg =~ ";" ]; then
               continue
             fi
