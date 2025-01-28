@@ -61,8 +61,8 @@ jobs:
               continue
             fi
             # arg=${arg/#$name/}
-            arg=${arg:`expr index "$arg" ';'`}
-            value=`expr "$arg" : '[[:space:]]*\(.*\?\)[[:space:]]*'`
+            value=${arg:`expr index "$arg" ';'`}
+            value=`expr "$value" : '[[:space:]]*\(.*\?\)[[:space:]]*'`
             # ARGS+=" -f inputs[${name}]=\""${value}"\""
             
             # echo "$ARGS"
