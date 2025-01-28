@@ -60,19 +60,16 @@ jobs:
               echo "Error: name is empty string."
               continue
             fi
-            # arg=${arg/#$name/}
             arg=${arg:`expr index "$arg" ';'`}
             val=`expr "$arg" : '[[:space:]]*\(.*\?\)[[:space:]]*'`
-            # ARGS+=" -f inputs[${name}]=\""${value}"\""
-            
-            # echo "$ARGS"
+            ARGS+=" -f inputs[${name}]=\""${val}"\""
           done
           echo "$ARGS"
-          # echo "$ARGS" >> $GITHUB_OUTPUT
+          echo "$ARGS" >> $GITHUB_OUTPUT
         shell: bash
 
-    # outputs:
-    #   lint: ${{ steps.parse-arg.outputs.value }}
+    outputs:
+      args: ${{ steps.parse-arg.outputs.ARGS }}
 
   # call:
   #   runs-on: ubuntu-latest
