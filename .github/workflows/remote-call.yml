@@ -63,22 +63,22 @@ jobs:
             value=${arg:`expr index "$arg" ';'`}
             ARGS+=" -f inputs[${name}]=\""${value}"\""
           done
-          echo "$ARGS"
           echo "$ARGS" >> $GITHUB_OUTPUT
         shell: bash
 
     outputs:
       args: ${{ steps.parse-arg.outputs.ARGS }}
 
-  # call:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: post
-  #       run: |
-  #         gh api --method POST \
-  #         -H "Accept: application/vnd.github+json" \
-  #         -H "X-GitHub-Api-Version: 2022-11-28" \
-  #         repos/sammnnz/geompy/actions/workflows/${{inputs.workflow_id}}/dispatches -f "ref=${{inputs.ref}}" -f "inputs[os]=ubuntu-latest" -f "inputs[py]=3.8"
-  #       env:
-  #         GH_TOKEN: ${{ secrets.REMOTE_CALL_SECRET }}
+  call:
+    runs-on: ubuntu-latest
+    steps:
+      - name: post
+        run: |
+          gh api --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          repos/sammnnz/geompy/actions/workflows/${{inputs.workflow_id}}/dispatches -f "ref=${{inputs.ref}}" \
+          ${{needs.pre.outputs.args}}
+        env:
+          GH_TOKEN: ${{ secrets.REMOTE_CALL_SECRET }}
         
