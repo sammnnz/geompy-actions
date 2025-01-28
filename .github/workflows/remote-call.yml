@@ -57,10 +57,11 @@ jobs:
             fi
             name=`expr "$arg" : '[[:space:]]*\([^;]*\?\)[[:space:]]*;'`
             if [[ $name == "" ]]; then
-              echo "Error: name is empty string."
+              echo "Warning: name is empty string."
               continue
             fi
-            ARGS+=" -f inputs[${name}]=\"\""
+            value=${arg:`expr index "$arg" ';'`}
+            ARGS+=" -f inputs[${name}]=\""${value}"\""
           done
           echo "$ARGS"
           echo "$ARGS" >> $GITHUB_OUTPUT
