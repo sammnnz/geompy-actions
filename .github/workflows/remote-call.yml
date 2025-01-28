@@ -70,6 +70,7 @@ jobs:
       args: ${{ steps.parse-arg.outputs.ARGS }}
 
   call:
+    needs: pre
     runs-on: ubuntu-latest
     steps:
       - name: post
