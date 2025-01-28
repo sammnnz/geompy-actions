@@ -40,7 +40,7 @@ jobs:
   pre:
     runs-on: windows-latest
     steps:
-      - id: parse-arg
+      - id: parse
         run: |
           ARGS=""
           for arg in \
@@ -63,11 +63,11 @@ jobs:
             value=${arg:`expr index "$arg" ';'`}
             ARGS+=" -f inputs[${name}]=\""${value}"\""
           done
-          echo "$ARGS" >> $GITHUB_OUTPUT
+          echo "args=$ARGS" >> $GITHUB_OUTPUT
         shell: bash
 
     outputs:
-      args: ${{ steps.parse-arg.outputs.ARGS }}
+      args: ${{ steps.parse.outputs.args }}
 
   call:
     needs: pre
